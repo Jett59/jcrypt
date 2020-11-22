@@ -28,12 +28,20 @@ public class JcryptTest {
 @Test
 public void testEncrypt_smallKeyAndData() {
 	String testString = "This will prove that the system works!";
-	byte[] key = Jcrypt.generateKey(4096);
+	byte[] key = Jcrypt.generateKey(32);
 	byte[] encryptedData = Jcrypt.encryptBytes(testString.getBytes(), key);
 	System.out.println("Encrypted data: "+new String(encryptedData));
 	byte[] decryptedData = Jcrypt.encryptBytes(encryptedData, key);
 	String decryptedString = new String(decryptedData);
 	System.out.println("decrypted: "+decryptedString);
 	assertEquals(testString, decryptedString);
+}
+@Test
+public void encryptBytes_largeData() {
+	byte[] key = Jcrypt.generateKey(32);
+	String text = "test".repeat(256);
+	byte[] encryptedData = Jcrypt.encryptBytes(text.getBytes(), key);
+	String decryptedText = new String(Jcrypt.encryptBytes(encryptedData, key));
+	assertEquals(text, decryptedText);
 }
 }
