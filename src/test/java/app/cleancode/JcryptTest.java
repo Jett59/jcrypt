@@ -12,7 +12,13 @@ import org.junit.jupiter.api.Test;
 public class JcryptTest {
 	@Test
 	public void generateKey_small() {
-		int keySize = 128;
+		generateKeyWithSize(256);
+	}
+	@Test
+	public void generateKey_large() {
+		generateKeyWithSize(4096);
+	}
+	public void generateKeyWithSize(int keySize) {
 		byte[] key1 = Jcrypt.generateKey(keySize);
 		assertEquals(keySize, key1.length);
 		byte[] key2 = Jcrypt.generateKey(keySize);
