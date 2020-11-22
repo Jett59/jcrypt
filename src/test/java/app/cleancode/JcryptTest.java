@@ -1,7 +1,11 @@
 package app.cleancode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +17,7 @@ public class JcryptTest {
 		assertEquals(keySize, key1.length);
 		byte[] key2 = Jcrypt.generateKey(keySize);
 		assertEquals(keySize, key2.length);
-		assertNotEquals(key1, key2);
+		assertFalse(Arrays.equals(key1, key2), "Keys are the same! This is detrimental to the encryption system");
 	}
 @Test
 public void testEncrypt_smallKeyAndData() {
