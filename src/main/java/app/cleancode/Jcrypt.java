@@ -1,5 +1,7 @@
 package app.cleancode;
 
+import java.security.SecureRandom;
+
 public class Jcrypt {
 public static void main(String[] args) {
 	byte[] key = generateKey(2048);
@@ -9,10 +11,9 @@ public static void main(String[] args) {
 	System.out.println("Decrypted: "+new String(decryptedData));
 }
 public static byte[] generateKey(int length) {
+	SecureRandom rand = new SecureRandom();
 	byte[] key = new byte[length];
-	for(int i = 0; i < length; i++) {
-		key[i] = (byte)(Math.random()*256-127);
-	}
+	rand.nextBytes(key);
 	return key;
 }
 public static byte[] encryptBytes(byte[] bytes, byte[] key) {
