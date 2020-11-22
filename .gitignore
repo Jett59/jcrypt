@@ -14,3 +14,8 @@ buildNumber.properties
 .settings/
 .classpath
 .project
+
+#key, input and output files
+keyfile
+outputfile
+inputfile

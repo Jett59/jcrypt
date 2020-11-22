@@ -9,11 +9,14 @@ public static byte[] generateKey(int length) {
 	rand.nextBytes(key);
 	return key;
 }
+public static byte encryptByte(byte b, byte keyByte) {
+	return (byte) (b ^ keyByte);
+}
 public static byte[] encryptBytes(byte[] bytes, byte[] key) {
 	byte[] result = new byte[bytes.length];
 	int keyBytePos = 0;
 	for(int i = 0; i < bytes.length; i++) {
-		result[i] = (byte) (bytes[i] ^ key[keyBytePos]);
+		result[i] = encryptByte(bytes[i], key[keyBytePos]);
 		if(keyBytePos+1 < key.length) {
 			keyBytePos++;
 		}else {
